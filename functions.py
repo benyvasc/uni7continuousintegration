@@ -1,7 +1,7 @@
 import pytest
 
 def sum(x, y):
-    return round (x + y, 6)
+    return round(x + y, 6)
 
 @pytest.mark.parametrize('num1, num2, expected',[(0.3,0.2,0.5), (3.5,2.5,6), (0.2,0.04,0.24), (0.36,0.04,0.4), (0.68,0.04,0.72)])
 def test_sum(num1, num2, expected):
