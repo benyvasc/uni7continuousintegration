@@ -15,7 +15,7 @@ def test_subtract(num1, num2, expected):
     assert subtract(num1, num2) == expected
 
 def multiply(x, y):
-    return x * y
+    return round(x * y, 6)
 
 def test_multiply():
     assert 5 == multiply(2.5, 2)
