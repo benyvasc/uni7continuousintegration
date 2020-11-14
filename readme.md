@@ -6,7 +6,7 @@
 > pip3 install pytest behave flask
 
 + Executando calculadora
-> python3 calc.py  
+> python3 calculadora.py
 
 + Executando teste com pytest
 > pytest functions.py -v
@@ -19,6 +19,4 @@
 
 + Testando a API: Se cálculo ok será exibida uma mensagem.
 Caso contrário erro.
-> python teste-api.py
-
-https://github.com/jeffrodrigo/testes_calculadora
+> python3 teste-api.py

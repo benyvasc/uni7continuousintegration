@@ -1,13 +1,10 @@
 from functions import sum, subtract, multiply, divide
-from behave import given, when, then
+# from behave import given, when, then
 
 def calculate():
-    num1 = input("First Number:\n")
-    operator = raw_input("Operator (+, -, *, /):\n")
-    num2 = input("Second Number:\n")
-
-    num1 = float(num1)
-    num2 = float(num2)
+    num1 = float(input("First Number:\n"))
+    operator = str(input("Operator (+, -, *, /):\n"))
+    num2 = float(input("Second Number:\n"))
 
     out = None
 
