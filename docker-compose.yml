@@ -1,0 +1,11 @@
+version: '3'
+services:
+  aj1013:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: FLASK_APP=api.py flask run
+    volumes:
+    - ./src:/src
+    ports:
+      - "5000:5000"
