@@ -1,10 +1,10 @@
 version: '3'
 services:
-  aj1013:
+  calc:
     build:
       context: .
       dockerfile: ./Dockerfile
-    command: FLASK_APP=api.py flask run
+    # command: uwsgi --chdir=/source/core --module=portal_atendimento.wsgi:application --env DJANGO_SETTINGS_MODULE=portal_atendimento.settings --master --pidfile=/tmp/project-master.pid --socket=127.0.0.1:8001 --processes=4 --threads 1 --uid=82 --gid=82 --harakiri=240 --max-requests=1000 --vacuum --enable-threads --reload-on-rss=256 --evil-reload-on-rss=1024 --thunder-lock --http :8000
     volumes:
     - ./src:/src
     ports:

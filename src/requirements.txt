@@ -1,0 +1,4 @@
+behave==1.2.6
+Flask==1.1.2
+pytest==6.2.2
+virtualenv==20.4.2
