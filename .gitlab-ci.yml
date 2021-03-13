@@ -1,7 +1,7 @@
-# variables:
-#   DOCKERFILE: ./docker/Dockerfile
-#   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
-#   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+variables:
+  DOCKERFILE: .Dockerfile
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 
 image: docker:stable
 
@@ -14,7 +14,7 @@ stages:
 unit-pytest:
   stage: unit-pytest
   image:
-    name: pyth0on
+    name: python
   only:
     - master
   before_script:
