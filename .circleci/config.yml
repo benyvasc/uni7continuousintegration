@@ -1,0 +1,19 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/save-cache
+      - run:
+          command: pip3 install -r src/requirements.txt && pytest src/functions.py -v
+          name: Test
+
+workflows:
+  main:
+    jobs:
+      - build-and-test
