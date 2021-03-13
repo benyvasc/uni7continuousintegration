@@ -1,0 +1,65 @@
+# variables:
+#   DOCKERFILE: ./docker/Dockerfile
+#   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+#   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+
+image: docker:stable
+
+stages:
+  - unit-pytest
+  - sonarcloud-check
+  - quality-test
+  - build-production
+
+unit-pytest:
+  stage: unit-pytest
+  image:
+    name: pyth0on
+  only:
+    - master
+  before_script:
+   - pip3 install -r requirements.txt
+   - pytest functions.py -v
+
+sonarcloud-check:                     ## Não deve ser analizada a branch master nesta stage
+  stage: sonarcloud-check
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - sonar-scanner
+  only:
+    - merge_requests
+    - develop
+
+sonarcloud-quality-test:
+  stage: quality-test
+  only:
+    - master
+  image:
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:      ## Descomentar linhas 41 e 42 para habilitar checagem do quality gate e bloquear se não atender
+    - sonar-scanner
+#      -Dsonar.qualitygate.wait=true
+#      -Dsonar.qualitygate.timeout=300
+
+build:
+  stage: build-production
+  services:
+    - docker:dind
+  only:
+    - master
+  before_script:
+    - docker login registry.gitlab.com -u $USER -p $PASSWORD
+  script:
+    - docker build --tag $CI_REGISTRY_IMAGE:latest -f $DOCKERFILE .
+    - docker push $CI_REGISTRY_IMAGE:latest
