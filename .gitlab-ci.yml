@@ -17,7 +17,7 @@ unit-pytest:
   only:
     - master
   script:
-   - pip3 install -r src/requirements.txt
+   - pip3 install -r requirements.txt
    - pytest src/functions.py -v
 
 sonarcloud-check:                     ## Não deve ser analizada a branch master nesta stage
