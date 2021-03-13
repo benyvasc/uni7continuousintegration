@@ -8,11 +8,9 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
       - python/save-cache
       - run:
-          command: pytest src/functions.py -v
+          command: pip3 install -r src/requirements.txt && pytest src/functions.py -v
           name: Test
 
 workflows:
