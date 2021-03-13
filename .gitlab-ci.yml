@@ -17,7 +17,7 @@ unit-pytest:
     name: python
   only:
     - master
-  before_script:
+  script:
    - pip3 install -r requirements.txt
    - pytest functions.py -v
 
