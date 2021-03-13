@@ -4,8 +4,6 @@ WORKDIR /src
 
 COPY src .
 
-COPY requirements.txt /src
-
 RUN apt-get update \
    && apt-get -y install \
       --no-install-recommends \
@@ -17,6 +15,7 @@ RUN apt-get update \
    && apt-get -y autoclean \
    && apt-get -y autoremove \
    && pip3 install -r requirements.txt
+
 
 ENV FLASK_APP=/src/api.py
 
