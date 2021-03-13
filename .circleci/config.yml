@@ -9,11 +9,10 @@ jobs:
     steps:
       - checkout
       - python/load-cache
-      - python/install-deps
-      - run:
-          command: pytest src/functions.py -v
-          name: Test
       - python/save-cache
+      - run:
+          command: pip3 install -r requirements.txt && pytest src/functions.py -v
+          name: Test
 
 workflows:
   main:
