@@ -10,10 +10,10 @@ jobs:
       - checkout
       - python/load-cache
       - python/install-deps
-      - python/save-cache
       - run:
           command: pytest src/functions.py -v
           name: Test
+      - python/save-cache
 
 workflows:
   main:
