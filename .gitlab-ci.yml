@@ -12,7 +12,7 @@ stages:
   - build-production
 
 unit-pytest:
-  stage: unit-pytest-behave
+  stage: unit-pytest
   image:
     name: python
   only:
