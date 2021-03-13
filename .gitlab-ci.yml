@@ -6,7 +6,7 @@ variables:
 image: docker:stable
 
 stages:
-  - unit-pytest-behave
+  - unit-pytest
   - sonarcloud-check
   - quality-test
   - build-production
@@ -20,7 +20,6 @@ unit-pytest:
   script:
    - pip3 install -r src/requirements.txt
    - pytest src/functions.py -v
-   - src/behave
 
 sonarcloud-check:                     ## Não deve ser analizada a branch master nesta stage
   stage: sonarcloud-check
