@@ -58,7 +58,7 @@ build:
   only:
     - master
   before_script:
-    - docker login registry.gitlab.com -u $USER -p $PASSWORD
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - docker build --tag $CI_REGISTRY_IMAGE:latest .
     - docker push $CI_REGISTRY_IMAGE:latest
