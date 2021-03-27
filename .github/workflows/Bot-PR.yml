@@ -1,0 +1,14 @@
+name: Bot-PR
+
+on: pull_request
+
+jobs:
+  comentario:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Resposta automática para a solcitações de PR
+        uses: thollander/actions-comment-pull-request@master
+        with:
+          message: 'Vamos avaliar sua PR em breve'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,25 @@
+name: PyTest
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout para master
+        uses: actions/checkout@v2
+
+      - name: Instalando Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Instalando dependencias
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Testing
+        run: pytest src/functions.py -v
